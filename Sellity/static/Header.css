@@ -50,6 +50,8 @@ body{
     width: 15vw;
     background-color: #DDEEDF;
     padding: 0px 10px;
+    border-radius: 3px 0px 0px 3px;
+
 }
 
 .search-form .button:hover{
@@ -58,10 +60,14 @@ body{
 
 .search-form .button{
     border-color: transparent;
+    border-radius:0px 3px 3px 0px;
+
+
 }
 
 .header-content .logo {
     height: 35px;
+    border-radius:3px;
 }
 
 .header-content_grow{

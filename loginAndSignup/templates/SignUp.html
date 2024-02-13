@@ -1,17 +1,9 @@
-{% load static %}
+{% extends 'Base.html' %}
 
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static 'SignUp.css' %}?1.9" media="all">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@300&family=Protest+Strike&family=Quattrocento+Sans:wght@700&display=swap" rel="stylesheet">
-    <title>Document</title>
-</head>
 <body>
+    {% block content %}
     <section class="container">
         <h1>
             <title class="title">Sellity</title>
@@ -21,7 +13,10 @@
             {% csrf_token %}
             {{form}}
             <button class="form__btn" type="submit">Sign Up</button>
+            <span>Do you have an account? <a href="{% url 'login' %}">Log in</a></span>
         </form>
     </section>
+    {% endblock %}
 </body>
+
 </html>

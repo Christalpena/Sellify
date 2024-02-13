@@ -4,6 +4,7 @@ from .forms import CustomUserCreationForm,CompleteProfileForm
 from django.contrib.auth import authenticate,login,logout
 from django.core.exceptions import ValidationError
 from .models import CustomUser
+from django.contrib.auth.forms import AuthenticationForm
 
 # Create your views here.
 
@@ -49,15 +50,15 @@ class CompleteProfile(View):
             if form.is_valid() and not user:
                 try:
                     new_user = CustomUser.objects.create_user(
-                    username = request.POST['username'],
+                    username = form.cleaned_data['username'],
                     email = user_email,
-                    first_name = request.POST['first_name'],
-                    last_name = request.POST['last_name'],
+                    first_name = form.cleaned_data['first_name'],
+                    last_name = form.cleaned_data['last_name'],
                     password = password
                     )
                 
-                    user = authenticate(username = request.POST['username'],
-                                        password=password)
+                    user = authenticate(username = form.cleaned_data['username'],
+                    password=password)
                     
                     if user is not None:
                         login(request,user)
@@ -68,7 +69,24 @@ class CompleteProfile(View):
             else:
                 return render(request, 'CompleteSignUp.html', {'form': form})
     
-        
+def login_view(request):
+    form = AuthenticationForm()
+    if request.method == 'POST':
+        form = AuthenticationForm(data=request.POST)
+        if form.is_valid():
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password']
+            print(username,password)
+            user = authenticate(request,username=username,password=password)
+            if user is not None:
+                login(request,user)
+                return redirect('Feed')
+            else:
+                print("holaa")
+                form.add_error(None, "Invalid credentials provided.")
+
+    return render(request, 'Login.html',{'form':form})  
+      
 def logout_view(request):
     logout(request)
     return redirect('signUp')

@@ -44,6 +44,10 @@ body{
     color: gray;
     margin-top: 5px;
 }
+.header-content > ul li a span:hover{
+    color: black;
+}
+
 .search-form{
     display: flex;
 }

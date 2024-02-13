@@ -1,5 +1,5 @@
 from django import forms
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm,AuthenticationForm
 from .models import CustomUser
 
 class CustomUserCreationForm(UserCreationForm):
@@ -20,5 +20,6 @@ class CompleteProfileForm(forms.ModelForm):
         fields = ('username', 'first_name', 'last_name','profile_photo')
 
 
-
+class LoginCustomUserForm(AuthenticationForm):
+    fields = ['email','password']
 

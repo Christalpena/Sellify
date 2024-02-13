@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'fontawesomefree',
     'Sellity',
     'loginAndSignup',
+    'userAccount'
 ]
 AUTH_USER_MODEL = "loginAndSignup.CustomUser"
 

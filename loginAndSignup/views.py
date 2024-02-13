@@ -63,9 +63,8 @@ class CompleteProfile(View):
                     if user is not None:
                         login(request,user)
                         return redirect('Feed')
-
                 except:
-                    raise ValidationError("algo salio makl")
+                    raise ValidationError("Something went wrong")
             else:
                 return render(request, 'CompleteSignUp.html', {'form': form})
     
@@ -76,7 +75,6 @@ def login_view(request):
         if form.is_valid():
             username = form.cleaned_data['username']
             password = form.cleaned_data['password']
-            print(username,password)
             user = authenticate(request,username=username,password=password)
             if user is not None:
                 login(request,user)
@@ -84,7 +82,6 @@ def login_view(request):
             else:
                 print("holaa")
                 form.add_error(None, "Invalid credentials provided.")
-
     return render(request, 'Login.html',{'form':form})  
       
 def logout_view(request):

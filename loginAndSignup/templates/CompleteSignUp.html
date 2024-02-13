@@ -2,10 +2,16 @@
 
 <body>
     {% block content %}
-    <form action="" method="post">
-        {% csrf_token %}
-        {{form}}
-        <button type="submit">dale</button>
-    </form>
+    <section class="container">
+        <form action="" method="post" class="form form_height">
+            <div>
+                <span>Please comple these fields to complete your profile</span>
+                <span class="form-advise">REMEMBER YOUR USERNAME TO LOG IN</span>
+            </div>
+            {% csrf_token %}
+            {{form}}
+            <button class="form__btn" type="submit">Complete Sign Up</button>
+        </form>
+    </section>
     {% endblock %}
 </body>

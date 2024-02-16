@@ -1,22 +1,65 @@
 {% extends 'Header.html' %}
-<!DOCTYPE html>
-<html lang="en">
+{% load static %}
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    {% block stylesheet %}
+    <link rel="stylesheet" href="{% static 'UserAccount.css' %}?1.4" media="all">
+    {% endblock stylesheet %}
 </head>
 <body>
     {% block content %}
-    <section class="user-profile">
- 
-    </section>
-    <section class="user-newPublicationSection">
+        <section class="user-profile">
+            <div class="user-background">
+                <img src="https://media.licdn.com/dms/image/C4E12AQF3CPOmqC08Nw/article-cover_image-shrink_720_1280/0/1546919870773?e=2147483647&v=beta&t=RPYZom0Z2he6k6RbAAWK0zJKfZgoJT4wCV9Q_2ymA70" alt="">
+            </div>
+            {% if reques.user.profile_photo %}
+            <img class="header__userImg" src={{request.user.profile_photo.url}} alt="">
+            {% else %}
+                <span style="color: #388E3C;"  class="material-symbols-outlined">
+                account_circle
+                </span>
+            {% endif %}
+            <div class="user-information">
+                <h3>
+                    {{request.user.username}}
+                    <span class="material-symbols-outlined">
+                        draw
+                    </span>
+                </h3>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque magni doloremque laudantium possimus eum maiores soluta sint magnam hic dicta. Quibusdam sit deleniti minima consequuntur minus ipsam neque deserunt quasi.</p>
+            </div>
+        </section>
+        <section class="user-newPublicationSection">
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+            Post New Proyect
+            </button>
 
-    </section>
-    <section class="user-publications">
+            <!-- Modal -->
+            <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="staticBackdropLabel">New Proyect</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form action="" method="POST" class="post-form" enctype="multipart/form-data" >
+                    {% csrf_token %}
+                    <div class="modal-body">
+                            {{form}}
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Post</button>
+                    </div>
+                </form>
+
+                </div>
+            </div>
+            </div>
+        </section>
+        <section class="user-publications">
 
     </section>
     {% endblock %}
 </body>
-</html>

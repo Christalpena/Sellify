@@ -3,7 +3,7 @@ from django.views.generic import View
 from .forms import CustomUserCreationForm,CompleteProfileForm
 from django.contrib.auth import authenticate,login,logout
 from django.core.exceptions import ValidationError
-from .models import CustomUser
+from userAccount.models import CustomUser
 from django.contrib.auth.forms import AuthenticationForm
 
 # Create your views here.

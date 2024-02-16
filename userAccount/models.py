@@ -1,10 +1,21 @@
 from django.db import models
-from loginAndSignup.models import CustomUser
+from django.contrib.auth.models import AbstractUser
+
+from mywebsite import settings
 
 # Create your models here.
 
-class Post(models.Model):
-    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+
+class CustomUser(AbstractUser):
+    email = models.EmailField(unique = True)
+    profile_photo = models.ImageField(blank=True,upload_to='images/')
+    followers = models.IntegerField(default = 0)
+    about = models.CharField(max_length = 300,blank = True)
+    REQUIRED_FIELDS = ['email']
+
+
+class Post(models.Model):    
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     description = models.CharField(max_length = 2000)
     price = models.DecimalField(blank = False, decimal_places = 2, max_digits=10)
     images = models.ImageField(upload_to='UserPost/')

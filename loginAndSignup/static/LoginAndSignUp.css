@@ -59,18 +59,19 @@ body {
 }
 
 .form input{
-    border-radius: 5px;
-    height: 30px;
-    padding: 0 10px;
-    outline-color: gray;
-    border-width: 1.5px;
+    height: 20px;
+    background-color: #DDEEDF;
+    border-radius: 10px;
+    border-color: transparent;
+    padding: 10px;
+    outline-color: #388E3C;
 }
 
 .form__btn{
     width: 100%;
     margin-top: 10px;
     height: 40px;
-    border-radius: 5px;
+    border-radius: 10px;
     border-color: transparent;
 
     background-color:  #388E3C;

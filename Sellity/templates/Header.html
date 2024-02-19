@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sellity</title>
     <link rel="shortcut icon" href="{% static 'Sellity.png' %}?1.3" media="all">
-    <link rel="stylesheet" href="{% static 'Header.css' %}?1.5" media="all">
+    <link rel="stylesheet" href="{% static 'Header.css' %}?1.7" media="all">
 
     <!--GOOGLE ICONS-->
     <script src="{% static 'fontawesomefree/js/all.min.js' %}"></script>
@@ -71,7 +71,7 @@
             </li>
             <li>
                 <div class="header-dropdown">
-                    {% if reques.user.profile_photo %}
+                    {% if request.user.profile_photo %}
                         <img class="header__userImg" src={{request.user.profile_photo.url}} alt="">
                     {% else %}
                         <span style="font-size: 45px;color: #388E3C;"  class="material-symbols-outlined">

@@ -45,7 +45,7 @@ class CompleteProfile(View):
             return redirect('signUp')
 
         if request.method == 'POST':
-            form = self.form(request.POST)
+            form = self.form(request.POST,request.FILES)
             user = CustomUser.objects.filter(username = request.POST['username'])
             if form.is_valid() and not user:
                 try:
@@ -54,7 +54,8 @@ class CompleteProfile(View):
                     email = user_email,
                     first_name = form.cleaned_data['first_name'],
                     last_name = form.cleaned_data['last_name'],
-                    password = password
+                    password = password,
+                    profile_photo = request.FILES['profile_photo']
                     )
                 
                     user = authenticate(username = form.cleaned_data['username'],
